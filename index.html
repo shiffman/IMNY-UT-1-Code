@@ -1,0 +1,55 @@
+<html>
+
+<head>
+  <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="libraries/seriously.js"></script>
+  <script src="libraries/effects/seriously.chroma.js"></script>
+  <script>
+    $(document).ready(function() {
+      $("#video").bind("loadeddata", function() {
+        var seriously,
+          chroma,
+          target;
+        seriously = new Seriously();
+        target = seriously.target('#canvas');
+        chroma = seriously.effect('chroma');
+        chroma.source = "#video";
+        target.source = chroma;
+        chroma.screen = [0, 1, 0, 1];
+        seriously.go();
+      });
+    });
+  </script>
+  <style>
+    #video {
+      position: absolute;
+      width: 320px;
+      height: 240px;
+      top: 0;
+      left: 0;
+      display: none;
+      z-index: 2;
+    }
+
+    #canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Code!</h1>
+
+  <p>Welcome to the website for Code!</p>
+  <video id="video" width="960" height="720" autoplay preload="auto">
+        <source src="assets/green-screen.mov" type="video/mp4" />
+      </video>
+  <canvas id="canvas" width="960" height="720"></canvas>
+  <div id="background"></div>
+
+</body>
+
+</html>
